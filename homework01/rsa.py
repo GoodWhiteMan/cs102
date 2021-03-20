@@ -45,8 +45,26 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    # PUT YOUR CODE HERE
-    pass
+    a = []
+    b = []
+    amodb = []
+    ab = []
+    x = [0]
+    y = [1]
+    while e != 0:
+        a.append(phi)
+        b.append(e)
+        ab.append(phi // e)
+        amodb.append(phi % e)
+        phi, e = e, phi % e
+    g = len(ab) - 1
+    i = 0
+    while i != (len(ab) - 1):
+        x.append(y[i])
+        g -= 1
+        y.append(x[i] - y[i] * ab[g])
+        i += 1
+    return y[len(ab) - 1] % a[0]
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
@@ -56,10 +74,10 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
         raise ValueError("p and q cannot be equal")
 
     # n = pq
-    # PUT YOUR CODE HERE
+    n = p * q
 
-    # phi = (p-1)(q-1)
-    # PUT YOUR CODE HERE
+    # phi(n) = (p-1)(q-1)
+    phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
     e = random.randrange(1, phi)
@@ -75,7 +93,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
 
     # Return public and private keypair
     # Public key is (e, n) and private key is (d, n)
-    return ((e, n), (d, n))
+    return (e, n), (d, n)
 
 
 def encrypt(pk: tp.Tuple[int, int], plaintext: str) -> tp.List[int]:

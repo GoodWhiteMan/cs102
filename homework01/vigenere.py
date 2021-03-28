@@ -13,26 +13,28 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     if len(plaintext) == len(keyword):
         g = 0
         for i in keyword:
-            if 65 <= ord(plaintext[g]) <= 90 and 65 <= ord(i) <= 90:
+            if plaintext[g].isupper() and i.isupper():
                 if ord(plaintext[g]) + ord(i) > 155:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 91)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 65)
-            elif 97 <= ord(plaintext[g]) <= 122 and 97 <= ord(i) <= 122:
+            elif plaintext[g].islower() and i.islower():
                 if ord(plaintext[g]) + ord(i) > 219:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 123)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 97)
-            elif 97 <= ord(plaintext[g]) <= 122 and 65 <= ord(i) <= 90:
+            elif plaintext[g].islower() and i.isupper():
                 if ord(plaintext[g]) + ord(i) > 187:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 91)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 65)
-            elif 65 <= ord(plaintext[g]) <= 90 and 97 <= ord(i) <= 122:
+            elif plaintext[g].isupper() and i.islower():
                 if ord(plaintext[g]) + ord(i) > 187:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 123)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 97)
+            else:
+                ciphertext += plaintext[g]
             g += 1
     elif len(plaintext) != len(keyword) and len(keyword) != 0:
         g = 0
@@ -41,26 +43,28 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
             g += 1
         g = 0
         for i in keyword:
-            if 65 <= ord(plaintext[g]) <= 90 and 65 <= ord(i) <= 90:
+            if plaintext[g].isupper() and i.isupper():
                 if ord(plaintext[g]) + ord(i) > 155:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 91)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 65)
-            elif 97 <= ord(plaintext[g]) <= 122 and 97 <= ord(i) <= 122:
+            elif plaintext[g].islower() and i.islower():
                 if ord(plaintext[g]) + ord(i) > 219:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 123)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 97)
-            elif 97 <= ord(plaintext[g]) <= 122 and 65 <= ord(i) <= 90:
+            elif plaintext[g].islower() and i.isupper():
                 if ord(plaintext[g]) + ord(i) > 187:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 91)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 65)
-            elif 65 <= ord(plaintext[g]) <= 90 and 97 <= ord(i) <= 122:
+            elif plaintext[g].isupper() and i.islower():
                 if ord(plaintext[g]) + ord(i) > 187:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 123)
                 else:
                     ciphertext += chr(ord(plaintext[g]) + ord(i) - 97)
+            else:
+                ciphertext += plaintext[g]
             g += 1
     return ciphertext
 
@@ -80,26 +84,28 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     if len(ciphertext) == len(keyword):
         g = 0
         for i in keyword:
-            if 65 <= ord(ciphertext[g]) <= 90 and 65 <= ord(i) <= 90:
+            if ciphertext[g].isupper() and i.isupper():
                 if ord(ciphertext[g]) - ord(i) < 0:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 91)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 65)
-            elif 97 <= ord(ciphertext[g]) <= 122 and 97 <= ord(i) <= 122:
+            elif ciphertext[g].islower() and i.islower():
                 if ord(ciphertext[g]) - ord(i) < 0:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 123)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 97)
-            elif 97 <= ord(ciphertext[g]) <= 122 and 65 <= ord(i) <= 90:
+            elif ciphertext[g].islower() and i.isupper():
                 if ord(ciphertext[g]) - ord(i) < 32:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 91)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 65)
-            elif 65 <= ord(ciphertext[g]) <= 90 and 97 <= ord(i) <= 122:
+            elif ciphertext[g].isupper() and ciphertext[g].islower():
                 if (ord(ciphertext[g]) - ord(i) + 33) < 0:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 123)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 97)
+            else:
+                plaintext += ciphertext[g]
             g += 1
     elif len(ciphertext) != len(keyword) and len(keyword) != 0:
         g = 0
@@ -108,25 +114,31 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
             g += 1
         g = 0
         for i in keyword:
-            if 65 <= ord(ciphertext[g]) <= 90 and 65 <= ord(i) <= 90:
+            if ciphertext[g].isupper() and i.isupper():
                 if ord(ciphertext[g]) - ord(i) < 0:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 91)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 65)
-            elif 97 <= ord(ciphertext[g]) <= 122 and 97 <= ord(i) <= 122:
+            elif ciphertext[g].islower() and i.islower():
                 if ord(ciphertext[g]) - ord(i) < 0:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 123)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 97)
-            elif 97 <= ord(ciphertext[g]) <= 122 and 65 <= ord(i) <= 90:
+            elif ciphertext[g].islower() and i.isupper():
                 if ord(ciphertext[g]) - ord(i) < 32:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 91)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 65)
-            elif 65 <= ord(ciphertext[g]) <= 90 and 97 <= ord(i) <= 122:
+            elif ciphertext[g].isupper() and ciphertext[g].islower():
                 if (ord(ciphertext[g]) - ord(i) + 33) < 0:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 123)
                 else:
                     plaintext += chr(ord(ciphertext[g]) - ord(i) + 97)
+            else:
+                plaintext += ciphertext[g]
             g += 1
     return plaintext
+
+
+print(encrypt_vigenere("Hello, world!", "Love"))
+print(ord(" "))

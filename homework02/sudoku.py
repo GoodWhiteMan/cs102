@@ -43,7 +43,7 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    return [values[i*n:n + n * i] for i in range(n)]
+    return [values[i * n : n + n * i] for i in range(n)]
 
 
 def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
@@ -85,8 +85,8 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     """
     row, col = pos
     block = []
-    for rows in grid[((row // 3) * 3):(((row // 3) * 3) + 3)]:
-        for elem in rows[((col // 3) * 3):(((col // 3) * 3) + 3)]:
+    for rows in grid[((row // 3) * 3) : (((row // 3) * 3) + 3)]:
+        for elem in rows[((col // 3) * 3) : (((col // 3) * 3) + 3)]:
             block.append(elem)
     return block
 
@@ -104,7 +104,7 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
     row = 0
     for rows in grid:
         for col, elem in enumerate(rows):
-            if elem == '.':
+            if elem == ".":
                 return row, col
         row += 1
 

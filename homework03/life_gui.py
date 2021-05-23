@@ -9,7 +9,9 @@ class GUI(UI):
         super().__init__(life)
         self.speed = speed
         self.cell_size = cell_size
-        self.screen = pygame.display.set_mode((self.life.cols * self.cell_size, self.life.rows * self.cell_size))
+        self.screen = pygame.display.set_mode(
+            (self.life.cols * self.cell_size, self.life.rows * self.cell_size)
+        )
         self.width = self.life.cols * self.cell_size
         self.height = self.life.rows * self.cell_size
 

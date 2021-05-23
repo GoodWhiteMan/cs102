@@ -9,7 +9,7 @@ class Console(UI):
         super().__init__(life)
 
     def draw_borders(self, screen) -> None:
-        """ Отобразить рамку. """
+        """Отобразить рамку."""
         screen.clear()
 
         height, width = screen.getmaxyx()
@@ -34,7 +34,7 @@ class Console(UI):
             line = ""
 
     def draw_grid(self, screen) -> None:
-        """ Отобразить состояние клеток. """
+        """Отобразить состояние клеток."""
         height, width = screen.getmaxyx()
         x = (width - self.life.cols) // 2
         y = (height - self.life.rows) // 2

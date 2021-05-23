@@ -1,9 +1,9 @@
 import random
 import typing as tp
 from copy import deepcopy
-from pygame import QUIT
 
 import pygame
+from pygame import QUIT
 from pygame.locals import *
 
 Cell = tp.Tuple[int, int]

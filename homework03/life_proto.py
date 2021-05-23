@@ -1,6 +1,7 @@
 import random
 import typing as tp
 from copy import deepcopy
+from pygame import QUIT
 
 import pygame
 from pygame.locals import *

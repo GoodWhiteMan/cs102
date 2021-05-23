@@ -32,5 +32,34 @@ class GUI(UI):
                     pygame.draw.rect(self.screen, pygame.Color("white"), (x, y, a, b))
 
     def run(self) -> None:
-        # Copy from previous assignment
-        pass
+        pygame.init()
+        clock = pygame.time.Clock()
+        pygame.display.set_caption("Game of Life")
+        self.screen.fill(pygame.Color("white"))
+        running = True
+        while running:
+            for event in pygame.event.get():
+                if event.type == QUIT:  # type: ignore
+                    running = False
+                # PAUSE
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        while True:
+                            event = pygame.event.wait()
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_SPACE:
+                                    break
+                            if event.type == pygame.MOUSEBUTTONDOWN:
+                                if event.button == 1:
+                                    col_num = event.pos[0] // self.cell_size
+                                    row_num = event.pos[1] // self.cell_size
+                                    self.life.curr_generation[row_num][col_num] = 1
+                                    self.draw_grid()
+                                    self.draw_lines()
+                                    pygame.display.flip()
+            self.draw_grid()
+            self.draw_lines()
+            pygame.display.flip()
+            clock.tick(self.speed)
+            self.life.step()
+        pygame.quit()

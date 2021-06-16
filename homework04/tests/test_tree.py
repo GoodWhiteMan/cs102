@@ -1,14 +1,16 @@
+#  type: ignore
 import pathlib
 import stat
 import time
 import unittest
 from unittest.mock import patch
 
+from pyfakefs.fake_filesystem_unittest import TestCase
+
 import pyvcs
-from pyfakefs.fake_filesystem_unittest import TestCase  # type: ignore
 from pyvcs.index import read_index, update_index
 from pyvcs.repo import repo_create
-from pyvcs.tree import commit_tree, 
+from pyvcs.tree import commit_tree, write_tree
 
 
 @unittest.skipIf(pyvcs.__version_info__ < (0, 5, 0), "Нужна версия пакета 0.5.0 и выше")

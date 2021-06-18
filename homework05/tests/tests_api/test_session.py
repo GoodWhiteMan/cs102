@@ -7,7 +7,7 @@ from requests.exceptions import (  # type: ignore
     ConnectionError,
     HTTPError,
     ReadTimeout,
-    RetryError
+    RetryError,
 )
 from vkapi.session import Session
 

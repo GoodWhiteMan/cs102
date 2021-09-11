@@ -142,15 +142,15 @@ class GameOfLife:
         out : Grid
             Новое поколение клеток.
         """
-        new_clist = deepcopy(self.grid)
+        new_grid = deepcopy(self.grid)
         for i in range(self.cell_height):
             for j in range(self.cell_width):
                 k = sum(self.get_neighbours((i, j)))
                 if self.grid[i][j]:
                     if k < 2 or k > 3:
-                        new_clist[i][j] = 0
+                        new_grid[i][j] = 0
                 else:
                     if k == 3:
-                        new_clist[i][j] = 1
-        self.grid = new_clist
+                        new_grid[i][j] = 1
+        self.grid = new_grid
         return self.grid
